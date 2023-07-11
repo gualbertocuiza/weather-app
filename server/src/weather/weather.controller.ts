@@ -1,32 +1,17 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common'
+import { WeatherService } from './weather.service'
 
 @Controller('weather')
 export class WeatherController {
-  private weathers = [
-    {
-      id: 1,
-      city: 'London',
-      wheather: 22.5,
-    },
-    {
-      id: 2,
-      city: 'New York',
-      wheather: 15,
-    },
-    {
-      id: 3,
-      city: 'Miami',
-      wheather: 30,
-    },
-  ];
+  constructor(private readonly weatherService: WeatherService) {}
 
   @Get()
   getWeather() {
-    return this.weathers;
+    return this.weatherService.findAll()
   }
 
   @Get(':id')
   getByID(@Param('id') id) {
-    return this.weathers[id - 1];
+    return this.weatherService.findById(id)
   }
 }
