@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common'
 import { WeatherService } from './weather.service'
 
 @Controller('weather')
@@ -11,7 +11,7 @@ export class WeatherController {
   }
 
   @Get(':id')
-  getByID(@Param('id') id) {
+  getByID(@Param('id', ParseIntPipe) id: number) {
     return this.weatherService.findById(id)
   }
 }

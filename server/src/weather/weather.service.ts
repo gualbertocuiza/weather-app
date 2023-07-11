@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 
 @Injectable()
 export class WeatherService {
@@ -24,7 +24,9 @@ export class WeatherService {
     return this.weathers
   }
 
-  findById(id) {
-    return this.weathers[id - 1]
+  findById(id: number) {
+    const weather = this.weathers[id - 1]
+    if (!weather) throw new NotFoundException(`Weather with id ${id} not found`)
+    return weather
   }
 }
