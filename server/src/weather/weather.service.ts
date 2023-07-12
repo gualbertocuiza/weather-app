@@ -41,7 +41,7 @@ export class WeatherService {
       const { data } = await axios.get(url)
       return data
     } catch (error) {
-      throw new InternalServerErrorException('Something went wrong')
+      throw new InternalServerErrorException({ error })
     }
   }
 }
