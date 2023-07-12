@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
+import axios from 'axios'
 
 @Injectable()
 export class WeatherService {
@@ -28,5 +33,15 @@ export class WeatherService {
     const weather = this.weathers[id - 1]
     if (!weather) throw new NotFoundException(`Weather with id ${id} not found`)
     return weather
+  }
+
+  async getCurrentWeather(location: string) {
+    const url = `${process.env.WEATHER_API_URL}/current.json?key=${process.env.WEATHER_API_KEY}&q=${location}`
+    try {
+      const { data } = await axios.get(url)
+      return data
+    } catch (error) {
+      throw new InternalServerErrorException('Something went wrong')
+    }
   }
 }
