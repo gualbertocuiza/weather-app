@@ -3,7 +3,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common'
-import axios from 'axios'
+import weatherApi from '../utils/weatherApi'
 
 @Injectable()
 export class WeatherService {
@@ -36,12 +36,18 @@ export class WeatherService {
   }
 
   async getCurrentWeather(location: string) {
-    const url = `${process.env.WEATHER_API_URL}/current.json?key=${process.env.WEATHER_API_KEY}&q=${location}`
+    const weatherKey = process.env.WEATHER_API_KEY
+    if (!weatherKey)
+      throw new InternalServerErrorException('WEATJER_API_KEY is missing')
+
+    const url = `/current.json?key=${weatherKey}&q=${location}`
     try {
-      const { data } = await axios.get(url)
+      const { data } = await weatherApi.get(url)
       return data
     } catch (error) {
-      throw new InternalServerErrorException({ error })
+      throw new InternalServerErrorException('Internal server error', {
+        cause: error,
+      })
     }
   }
 }
