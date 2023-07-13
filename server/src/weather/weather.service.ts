@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common'
+import weatherApi from '../utils/weatherApi'
 
 @Injectable()
 export class WeatherService {
@@ -28,5 +33,19 @@ export class WeatherService {
     const weather = this.weathers[id - 1]
     if (!weather) throw new NotFoundException(`Weather with id ${id} not found`)
     return weather
+  }
+
+  private setUrlQueries(location: string) {
+    const weatherKey = process.env.WEATHER_API_KEY
+    if (!weatherKey)
+      throw new InternalServerErrorException('WEATJER_API_KEY is missing')
+
+    return `/current.json?key=${weatherKey}&q=${location}`
+  }
+
+  async getCurrentWeather(location: string) {
+    const url = this.setUrlQueries(location)
+    const { data } = await weatherApi.get(url)
+    return data
   }
 }
