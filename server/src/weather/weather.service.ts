@@ -35,19 +35,17 @@ export class WeatherService {
     return weather
   }
 
-  async getCurrentWeather(location: string) {
+  private setUrlQueries(location: string) {
     const weatherKey = process.env.WEATHER_API_KEY
     if (!weatherKey)
       throw new InternalServerErrorException('WEATJER_API_KEY is missing')
 
-    const url = `/current.json?key=${weatherKey}&q=${location}`
-    try {
-      const { data } = await weatherApi.get(url)
-      return data
-    } catch (error) {
-      throw new InternalServerErrorException('Internal server error', {
-        cause: error,
-      })
-    }
+    return `/current.json?key=${weatherKey}&q=${location}`
+  }
+
+  async getCurrentWeather(location: string) {
+    const url = this.setUrlQueries(location)
+    const { data } = await weatherApi.get(url)
+    return data
   }
 }

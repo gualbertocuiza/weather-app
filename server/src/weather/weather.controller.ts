@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Controller,
   Get,
+  InternalServerErrorException,
   Param,
   ParseIntPipe,
   Query,
@@ -13,9 +14,16 @@ export class WeatherController {
   constructor(private readonly weatherService: WeatherService) {}
 
   @Get()
-  getWeather(@Query('location') location: string) {
+  async getWeather(@Query('location') location: string) {
     if (!location) throw new BadRequestException('location query is required')
-    return this.weatherService.getCurrentWeather(location)
+    try {
+      return await this.weatherService.getCurrentWeather(location)
+    } catch (error) {
+      console.error(error)
+      throw new InternalServerErrorException('Internal server error', {
+        cause: error,
+      })
+    }
   }
 
   @Get(':id')
