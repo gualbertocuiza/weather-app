@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { Weather } from '../interfaces/Weather'
 const props = defineProps<{ weather: Weather }>()
-const location = props.weather.location
-const current = props.weather.current
+const { location, current } = props.weather
 </script>
 
 <template>
