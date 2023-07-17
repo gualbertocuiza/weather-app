@@ -20,14 +20,10 @@ const searchCity = () => {
   if (search.value?.length < 3) return
   results.value = []
   for (let key in cities) {
-    const res = cities[key].filter((v) => {
-      return v.match(search.value)
+    const res = cities[key].filter((v) => v.match(search.value))
+    res.forEach((item) => {
+      results.value.push(item + ', ' + key)
     })
-    if (res.length > 0) {
-      res.forEach((item) => {
-        results.value.push(item + ', ' + key)
-      })
-    }
   }
 }
 </script>
