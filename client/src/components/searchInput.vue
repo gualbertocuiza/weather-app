@@ -1,27 +1,35 @@
 <script lang="ts" setup>
-import { ref, watch } from "vue";
-import cities from "../data/country-by-cities.json";
-const search = ref<string>("");
-const results = ref<string[]>([]);
+import { ref, watch } from 'vue'
+import cities from '../data/country-by-cities.json'
+
+const search = ref<string>('')
+const results = ref<string[]>([])
+const emit = defineEmits(['setCity'])
+
+const setCity = async (city: string) => {
+  search.value = city
+  results.value = []
+  emit('setCity', search.value)
+}
 
 watch(search, () => {
-  searchCity();
-});
+  searchCity()
+})
 
 const searchCity = () => {
-  results.value = [];
-  if (search.value?.length < 3) return;
+  if (search.value?.length < 3) return
+  results.value = []
   for (let key in cities) {
     const res = cities[key].filter((v) => {
-      return v.match(search.value);
-    });
+      return v.match(search.value)
+    })
     if (res.length > 0) {
       res.forEach((item) => {
-        results.value.push(item + ", " + key);
-      });
+        results.value.push(item + ', ' + key)
+      })
     }
   }
-};
+}
 </script>
 
 <template>
@@ -38,7 +46,13 @@ const searchCity = () => {
           v-if="results.length > 0"
           class="menu bg-base-200 max-w-md rounded-box"
         >
-          <li v-for="res in results">{{ res }}</li>
+          <li
+            v-for="res in results"
+            @click="setCity(res)"
+            class="cursor-pointer hover:bg-gray-400"
+          >
+            {{ res }}
+          </li>
         </ul>
       </div>
     </div>
