@@ -19,10 +19,6 @@ const alertStore = reactive({
     this.type = ''
     this.message = ''
   },
-
-  getClasses() {
-    return `alert alert-${this.type}`
-  },
 })
 
 export default alertStore
