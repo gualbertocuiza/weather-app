@@ -1,18 +1,9 @@
 <script lang="ts" setup>
 import WeatherCard from './weatherCard.vue'
 import SearchInput from './searchInput.vue'
-import { Weather } from '../interfaces/Weather'
-import { getCurrentWeather } from '../services/weatherService'
-import { ref } from 'vue'
+import { useWeather } from '../composables/useWeather'
 
-const loading = ref<boolean>(false)
-const currentWeather = ref<Weather>()
-
-const setCity = async (city: string) => {
-  loading.value = true
-  currentWeather.value = await getCurrentWeather(city)
-  loading.value = false
-}
+const { loading, currentWeather, setCity } = useWeather()
 </script>
 <template>
   <SearchInput @setCity="setCity" />
