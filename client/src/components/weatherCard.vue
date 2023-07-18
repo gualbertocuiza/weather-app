@@ -1,14 +1,23 @@
+<script lang="ts" setup>
+import { Weather } from '../interfaces/Weather'
+const props = defineProps<{ weather: Weather }>()
+const { location, current } = props.weather
+</script>
+
 <template>
   <div class="w-96">
     <div class="card w-auto shadow-xl">
       <div class="card-body">
-        <h1 class="text-3xl">San Francisco</h1>
-        <small>Mon, 23:30 PM, Mostly sunny</small>
+        <h1 class="text-3xl">
+          {{ location.name }},
+          {{ location.country }}
+        </h1>
+        <small>{{ location.localtime }} - {{ current.condition.text }}</small>
         <div class="weahter flex justify-between">
-          <h1>23°C</h1>
+          <h1>{{ current.temp_c }}°C</h1>
           <img
-            src="//cdn.weatherapi.com/weather/64x64/day/116.png"
-            alt="sunny"
+            :src="current.condition.icon"
+            :alt="current.condition.text"
             width="90"
             height="90"
           />
@@ -17,23 +26,23 @@
         <div class="text-sm tracking-wide text-gray-500">
           <div class="flex justify-between mb-2">
             <span>Windy</span>
-            <span>23 km/h</span>
+            <span>{{ current.wind_kph }} km/h</span>
           </div>
           <div class="flex justify-between mb-2">
             <span>Windy Dir</span>
-            <span>W</span>
+            <span>{{ current.wind_dir }}</span>
           </div>
           <div class="flex justify-between mb-2">
             <span>Humidity</span>
-            <span>58</span>
+            <span>{{ current.humidity }}</span>
           </div>
           <div class="flex justify-between mb-2">
             <span>cloud</span>
-            <span>75</span>
+            <span>{{ current.cloud }}</span>
           </div>
           <div class="flex justify-between mb-2">
             <span>Feels like</span>
-            <span>8.1°C</span>
+            <span>{{ current.feelslike_c }}°C</span>
           </div>
         </div>
         <div class="divider"></div>
