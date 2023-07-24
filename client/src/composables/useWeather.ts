@@ -7,11 +7,15 @@ interface storageWeather {
   data: {
     [city: string]: Weather
   }
+  updated_at: Date
 }
 
 const loading = ref<boolean>(false)
 const currentWeather = ref<Weather>()
-const storageWeathers = ref<storageWeather>({ data: {} })
+const storageWeathers = ref<storageWeather>({
+  data: {},
+  updated_at: new Date(),
+})
 
 export const useWeather = () => {
   onMounted(() => {
@@ -23,6 +27,12 @@ export const useWeather = () => {
     if (weather) {
       let data = JSON.parse(weather)
       storageWeathers.value = data
+      if (
+        new Date(storageWeathers.value.updated_at).getDay() !=
+        new Date().getDay()
+      ) {
+        updateWeatherData()
+      }
     }
   }
 
@@ -54,11 +64,19 @@ export const useWeather = () => {
 
   const storeWeatherCity = (city: string, data: Weather) => {
     storageWeathers.value.data[getCityKey(city)] = data
+    storageWeathers.value.updated_at = new Date()
     localStorage.setItem('cities', JSON.stringify(storageWeathers.value))
   }
 
   const getCityKey = (city: string) => {
     return city.replace(',', '').replaceAll(' ', '-')
+  }
+
+  const updateWeatherData = () => {
+    const { data } = storageWeathers.value
+    for (const key in data) {
+      requestWeather(key.replaceAll('-', ' '))
+    }
   }
 
   return {
