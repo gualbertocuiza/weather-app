@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { Weather } from '../interfaces/Weather'
 const props = defineProps<{ weather: Weather }>()
 const { location, current } = props.weather
-const degCelsius = ref<boolean>(true)
+const degCelsius = ref<boolean>(false)
 const currentTemp = computed(() => {
   if (!degCelsius.value) return `${current.temp_c}°C`
   return `${current.temp_f}°F`
@@ -24,7 +24,7 @@ const feelsLike = computed(() => {
         </h1>
         <small>{{ location.localtime }} - {{ current.condition.text }}</small>
         <div class="weahter flex justify-between">
-          <h1>{{ currentTemp }}</h1>
+          <h1 id="temp">{{ currentTemp }}</h1>
           <img
             :src="current.condition.icon"
             :alt="current.condition.text"
@@ -52,7 +52,7 @@ const feelsLike = computed(() => {
           </div>
           <div class="flex justify-between mb-2">
             <span>Feels like</span>
-            <span>{{ feelsLike }}</span>
+            <span id="feels-like">{{ feelsLike }}</span>
           </div>
         </div>
         <div class="divider"></div>
