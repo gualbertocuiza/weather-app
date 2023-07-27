@@ -17,12 +17,14 @@ describe('weather card component', () => {
   })
 
   it('should display the temperature in degrees Celsius by default', () => {
-    expect(wrapper.find('#temp').text()).toContain(`${current.temp_c}°C`)
+    expect(wrapper.find('[data-testid="temp"]').text()).toContain(
+      `${current.temp_c}°C`
+    )
   })
 
   it('should switch between celcious and fahrenheit with toggle input', async () => {
-    const temp = wrapper.find('#temp')
-    const feelsLike = wrapper.find('#feels-like')
+    const temp = wrapper.find('[data-testid="temp"]')
+    const feelsLike = wrapper.find('[data-testid]="feels-like"')
 
     expect(temp.text()).toContain(`${current.temp_c}°C`)
     expect(feelsLike.text()).toContain(`${current.feelslike_c}°C`)

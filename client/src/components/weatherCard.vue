@@ -24,7 +24,7 @@ const feelsLike = computed(() => {
         </h1>
         <small>{{ location.localtime }} - {{ current.condition.text }}</small>
         <div class="weahter flex justify-between">
-          <h1 id="temp">{{ currentTemp }}</h1>
+          <h1 data-testid="temp">{{ currentTemp }}</h1>
           <img
             :src="current.condition.icon"
             :alt="current.condition.text"
@@ -52,7 +52,7 @@ const feelsLike = computed(() => {
           </div>
           <div class="flex justify-between mb-2">
             <span>Feels like</span>
-            <span id="feels-like">{{ feelsLike }}</span>
+            <span data-testid="feels-like">{{ feelsLike }}</span>
           </div>
         </div>
         <div class="divider"></div>
