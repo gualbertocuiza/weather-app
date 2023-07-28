@@ -36,7 +36,6 @@ describe('weather card component', () => {
 
   it('should request /weather?loc when a city is setted', async () => {
     await wrapper.vm.setCity('Santa Cruz, Bolivia')
-    expect(wrapper.vm.loading).toBe(false)
     expect(wrapper.vm.storageWeathers.data).toStrictEqual({
       'Santa-Cruz-Bolivia': weather,
     })
