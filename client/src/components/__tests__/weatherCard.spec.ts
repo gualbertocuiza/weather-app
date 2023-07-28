@@ -10,6 +10,10 @@ describe('weather card component', () => {
     },
   })
 
+  it('should render correctly', () => {
+    expect(wrapper.element).toMatchSnapshot()
+  })
+
   it('should display the city, country', () => {
     expect(wrapper.find('h1').text()).toContain(
       `${location.name}, ${location.country}`

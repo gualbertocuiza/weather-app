@@ -1,0 +1,170 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`weather card component > should render correctly 1`] = `
+<div
+  class="w-96"
+  data-v-88aee66d=""
+>
+  <div
+    class="card w-auto shadow-xl"
+    data-v-88aee66d=""
+  >
+    <div
+      class="card-body"
+      data-v-88aee66d=""
+    >
+      <h1
+        class="text-3xl"
+        data-v-88aee66d=""
+      >
+        Cochabamba, Bolivia
+      </h1>
+      <small
+        data-v-88aee66d=""
+      >
+        2023-07-19 10:36 - Sunny
+      </small>
+      <div
+        class="weahter flex justify-between"
+        data-v-88aee66d=""
+      >
+        <h1
+          data-testid="temp"
+          data-v-88aee66d=""
+        >
+          17°C
+        </h1>
+        <img
+          alt="Sunny"
+          data-v-88aee66d=""
+          height="90"
+          src="//cdn.weatherapi.com/weather/64x64/day/113.png"
+          width="90"
+        />
+      </div>
+      <div
+        class="divider"
+        data-v-88aee66d=""
+      />
+      <div
+        class="text-sm tracking-wide text-gray-500"
+        data-v-88aee66d=""
+      >
+        <div
+          class="flex justify-between mb-2"
+          data-v-88aee66d=""
+        >
+          <span
+            data-v-88aee66d=""
+          >
+            Windy
+          </span>
+          <span
+            data-v-88aee66d=""
+          >
+            6.1 km/h
+          </span>
+        </div>
+        <div
+          class="flex justify-between mb-2"
+          data-v-88aee66d=""
+        >
+          <span
+            data-v-88aee66d=""
+          >
+            Windy Dir
+          </span>
+          <span
+            data-v-88aee66d=""
+          >
+            WSW
+          </span>
+        </div>
+        <div
+          class="flex justify-between mb-2"
+          data-v-88aee66d=""
+        >
+          <span
+            data-v-88aee66d=""
+          >
+            Humidity
+          </span>
+          <span
+            data-v-88aee66d=""
+          >
+            34
+          </span>
+        </div>
+        <div
+          class="flex justify-between mb-2"
+          data-v-88aee66d=""
+        >
+          <span
+            data-v-88aee66d=""
+          >
+            cloud
+          </span>
+          <span
+            data-v-88aee66d=""
+          >
+            0
+          </span>
+        </div>
+        <div
+          class="flex justify-between mb-2"
+          data-v-88aee66d=""
+        >
+          <span
+            data-v-88aee66d=""
+          >
+            Feels like
+          </span>
+          <span
+            data-testid="feels-like"
+            data-v-88aee66d=""
+          >
+            17°C
+          </span>
+        </div>
+      </div>
+      <div
+        class="divider"
+        data-v-88aee66d=""
+      />
+      <div
+        class="card-actions justify-between"
+        data-v-88aee66d=""
+      >
+        <div
+          class="flex align-center"
+          data-v-88aee66d=""
+        >
+          <span
+            class="text-gray-500"
+            data-v-88aee66d=""
+          >
+            °C
+          </span>
+          <input
+            class="toggle mx-1"
+            data-v-88aee66d=""
+            type="checkbox"
+          />
+          <span
+            class="text-gray-500"
+            data-v-88aee66d=""
+          >
+            °F
+          </span>
+        </div>
+        <button
+          class="btn btn-neutral btn-sm"
+          data-v-88aee66d=""
+        >
+          Full report
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

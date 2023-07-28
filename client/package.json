@@ -7,10 +7,12 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:update": "vitest -u"
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "flush-promises": "^1.0.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -19,6 +21,7 @@
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.2.1",
     "happy-dom": "^10.5.2",
+    "msw": "^1.2.3",
     "postcss": "^8.4.25",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2",
