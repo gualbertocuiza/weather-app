@@ -6,7 +6,7 @@ import { setupServer } from 'msw/node'
 import { WEATHER_API_URL } from '../utils/constants'
 
 const server = setupServer(
-  rest.get(`/${WEATHER_API_URL}/current.json`, (req, res, ctx) => {
+  rest.get(`${WEATHER_API_URL}/current.json`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(weather))
   }),
 )
