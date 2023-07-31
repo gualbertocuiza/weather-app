@@ -41,7 +41,7 @@ export class WeatherService {
         ? 'api-key-123'
         : process.env.WEATHER_API_KEY
     if (!weatherKey)
-      throw new InternalServerErrorException('WEATJER_API_KEY is missing')
+      throw new InternalServerErrorException('WEATHER_API_KEY is missing')
 
     return `/current.json?key=${weatherKey}&q=${location}`
   }

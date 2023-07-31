@@ -3,9 +3,10 @@ import { WeatherController } from './weather.controller'
 import { WeatherService } from './weather.service'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
+import { WEATHER_API_URL } from '../utils/constants'
 
 const server = setupServer(
-  rest.get('http://api.weatherapi.com/v1/current.json', (req, res, ctx) => {
+  rest.get(`/${WEATHER_API_URL}/current.json`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(weather))
   }),
 )
@@ -26,7 +27,7 @@ describe('WeatherController', () => {
   })
 
   describe('root', () => {
-    it('/weather?location=Cochabamba (GET)', async () => {
+    it('should return a weather object of the city sent', async () => {
       const res = await weatherController.getWeather('Cocha')
       expect(res).toStrictEqual(weather)
     })
