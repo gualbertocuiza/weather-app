@@ -18,4 +18,4 @@ jobs:
       - name: Install
         run: npm i
       - name: Test
-        run: npm run jest
+        run: npm run test
