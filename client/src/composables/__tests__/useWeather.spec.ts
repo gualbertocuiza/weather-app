@@ -7,6 +7,7 @@ import { setupServer } from 'msw/node'
 
 const server = setupServer(
   rest.get('http://localhost:3000/weather', (req, res, ctx) => {
+    console.log(req)
     return res(ctx.status(200), ctx.json(weather))
   })
 )
